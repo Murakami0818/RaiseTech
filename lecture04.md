@@ -7,7 +7,7 @@
 ![EC2インスタンスの作成](/Image/lecture04_2.png)
 
 ##### セキュリティグループ
-![EC2のセキュリティグループ](/Image/lecture04_3.png)
+![EC2のセキュリティグループ](/Image/lecture04_3_2.png)
 
 ##### 起動
 ![EC2の起動](/Image/lecture04_6.png)
