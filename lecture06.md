@@ -17,7 +17,7 @@
 - サンプルアプリのWEBサーバーを停止し、アラーム状態となったことを通知するメールが届くことを確認した。  
 ![Alarm](/Image/lecture06_3.png)  
 ![Alarm mail](/Image/lecture06_4.png)
-- サンプルアプリのWEBセーバーを起動し、OK状態に戻ったことを通知するメールが届くことを確認した。  
+- サンプルアプリのWEBサーバーを起動し、OK状態に戻ったことを通知するメールが届くことを確認した。  
 ![OK](/Image/lecture06_5.png)  
 ![OK mail](/Image/lecture06_6.png)
 
