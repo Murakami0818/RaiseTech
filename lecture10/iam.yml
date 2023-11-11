@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Resources: 
+  IamRoletoAccessS3:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument: 
+        Version: 2012-10-17
+        Statement: 
+          - Effect: Allow
+            Principal: 
+              Service:
+                - "ec2.amazonaws.com"
+            Action: 
+              - sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonS3FullAccess
+      Tags: 
+        - Key: Name
+          Value: IamRole-CF
+  iamInstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Roles:
+        - !Ref IamRoletoAccessS3
+
+Outputs:
+  iamInstanceProfile:
+    Value: !Ref iamInstanceProfile
+    Export:
+      Name: InstanceProfile

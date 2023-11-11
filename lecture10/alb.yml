@@ -1,0 +1,71 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Resources: 
+# ------------------------------------------------------------#
+#  TargetGroup
+# ------------------------------------------------------------#
+  TG:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      Port: 80
+      Protocol: HTTP
+      Targets:
+        - Id: !ImportValue EC2
+          Port: 80
+      HealthCheckPath: /
+      HealthCheckPort: traffic-port
+      HealthCheckProtocol: HTTP
+      HealthCheckTimeoutSeconds: 5
+      HealthyThresholdCount: 5
+      UnhealthyThresholdCount: 2
+      HealthCheckIntervalSeconds: 30
+      IpAddressType: ipv4
+      Matcher: 
+        HttpCode: 200
+      VpcId: !ImportValue VPC
+      Tags:
+        - Key: Name
+          Value: TG-CF
+# ------------------------------------------------------------#
+#  ALB
+# ------------------------------------------------------------#
+  ALB:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      SecurityGroups:
+        - !Ref SecGroupforALB
+      Subnets:
+        - !ImportValue PublicSubnet1a
+        - !ImportValue PublicSubnet1c
+      Type: application
+      Tags:
+        - Key: Name
+          Value: ALB-CF
+  ALBListener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      DefaultActions: 
+        - TargetGroupArn: !Ref TG
+          Type: forward
+      LoadBalancerArn: !Ref ALB
+      Port: 80
+      Protocol: HTTP
+  SecGroupforALB:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: forALB-CF
+      VpcId: !ImportValue VPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          CidrIp: 0.0.0.0/0
+          FromPort: 80
+          ToPort: 80
+      Tags:
+        - Key: Name
+          Value: SecGroup-ALB-CF
+
+Outputs:
+  SGforALB:
+    Value: !Ref SecGroupforALB
+    Export:
+      Name: SecGroupforALB

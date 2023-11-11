@@ -1,0 +1,149 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Resources: 
+# ------------------------------------------------------------#
+#  VPC
+# ------------------------------------------------------------#
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/20
+      EnableDnsSupport: true
+      Tags:
+        - Key: Name
+          Value: VPC-CF
+# ------------------------------------------------------------#
+#  Subnet
+# ------------------------------------------------------------#
+  PublicSubnet1a:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: ap-northeast-1a
+      VpcId: !Ref VPC
+      CidrBlock: 10.0.0.0/24
+      Tags:
+        - Key: Name
+          Value: PublicSubnet1a-CF
+  PublicSubnet1c:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: ap-northeast-1c
+      VpcId: !Ref VPC
+      CidrBlock: 10.0.1.0/24
+      Tags:
+        - Key: Name
+          Value: PublicSubnet1c-CF
+  PrivateSubnet1a:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: ap-northeast-1a
+      VpcId: !Ref VPC
+      CidrBlock: 10.0.2.0/24
+      Tags:
+        - Key: Name
+          Value: PrivateSubnet1a-CF
+  PrivateSubnet1c:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: ap-northeast-1c
+      VpcId: !Ref VPC
+      CidrBlock: 10.0.3.0/24
+      Tags:
+        - Key: Name
+          Value: PrivateSubnet1c-CF
+  RDSDBSubnetGroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: Subnet Group for RDS
+      SubnetIds:
+        - !Ref PrivateSubnet1a
+        - !Ref PrivateSubnet1c
+      Tags:
+        - Key: Name
+          Value: SubnetGroup
+# ------------------------------------------------------------#
+#  InternetGateWay
+# ------------------------------------------------------------#
+  IGW:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: IGW-CF
+  AttachGateway:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref VPC
+      InternetGatewayId: !Ref IGW
+# ------------------------------------------------------------#
+#  RouteTable
+# ------------------------------------------------------------#
+  RouteTableforPublicSubnet:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref VPC
+      Tags:
+        - Key: Name
+          Value: RouteTable-Public-CF
+  RouteTableforPrivateSubnet1a:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref VPC
+      Tags:
+        - Key: Name
+          Value: RouteTable-Private1a-CF
+  RouteTableforPrivateSubnet1c:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref VPC
+      Tags:
+        - Key: Name
+          Value: RouteTable-Private1c-CF
+  PublicSubnet1aRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref RouteTableforPublicSubnet
+      SubnetId: !Ref PublicSubnet1a
+  PublicSubnet1cRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref RouteTableforPublicSubnet
+      SubnetId: !Ref PublicSubnet1c
+  PrivateSubnet1aRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref RouteTableforPrivateSubnet1a
+      SubnetId: !Ref PrivateSubnet1a
+  PrivateSubnet1cRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref RouteTableforPrivateSubnet1c
+      SubnetId: !Ref PrivateSubnet1c
+  Route:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref RouteTableforPublicSubnet
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref IGW
+
+Outputs:
+  VPC:
+    Value: !Ref VPC
+    Export:
+      Name: VPC
+  Subnet1:
+    Value: !Ref PublicSubnet1a
+    Export:
+      Name: PublicSubnet1a
+  Subnet2:
+    Value: !Ref PublicSubnet1c
+    Export:
+      Name: PublicSubnet1c
+  SubnetGroup:
+    Value: !Ref RDSDBSubnetGroup
+    Export:
+      Name: SubnetGroup
+  RouteTable:
+    Value: !Ref RouteTableforPublicSubnet
+    Export:
+      Name: RouteTable
