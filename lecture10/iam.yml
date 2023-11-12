@@ -29,4 +29,3 @@ Outputs:
     Value: !Ref IamInstanceProfile
     Export:
       Name: RaiseTechSampleApp-InstanceProfile
-
