@@ -21,12 +21,12 @@ Resources:
       NetworkInterfaces:
         - AssociatePublicIpAddress: true
           DeviceIndex: 0
-          SubnetId: !ImportValue RaiseTechSampleApp-PublicSubnet1a
+          SubnetId: !ImportValue RaiseTechSampleAppPublicSubnet1a
           GroupSet:
             - !Ref SecGroupForEC2
       ImageId: ami-04f0680f68f076681
       InstanceType: t2.micro
-      IamInstanceProfile: !ImportValue RaiseTechSampleApp-InstanceProfile
+      IamInstanceProfile: !ImportValue RaiseTechSampleAppInstanceProfile
       Tags:
         - Key: Name
           Value: EC2Instance-CF
@@ -34,7 +34,7 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: forEC2-CF
-      VpcId: !ImportValue RaiseTechSampleApp-VPC
+      VpcId: !ImportValue RaiseTechSampleAppVPC
       SecurityGroupIngress:
         - IpProtocol: tcp
           CidrIp: !Ref MyIP
@@ -43,7 +43,7 @@ Resources:
         - IpProtocol: tcp
           FromPort: 80
           ToPort: 80
-          SourceSecurityGroupId: !ImportValue RaiseTechSampleApp-SecGroupForALB
+          SourceSecurityGroupId: !ImportValue RaiseTechSampleAppSecGroupForALB
       Tags:
         - Key: Name
           Value: SecGroup-EC2-CF
@@ -57,7 +57,7 @@ Resources:
       DBInstanceClass: db.t3.micro
       AvailabilityZone: ap-northeast-1a
       DBName: forCF
-      DBSubnetGroupName: !ImportValue RaiseTechSampleApp-SubnetGroup
+      DBSubnetGroupName: !ImportValue RaiseTechSampleAppSubnetGroup
       Engine: mysql
       EngineVersion: 8.0.34
       MasterUsername: !Ref RDSMasterUsername
@@ -76,7 +76,7 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: forRDS-CF
-      VpcId: !ImportValue RaiseTechSampleApp-VPC
+      VpcId: !ImportValue RaiseTechSampleAppVPC
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 3306
@@ -90,4 +90,4 @@ Outputs:
   EC2Instance:
     Value: !Ref EC2Instance
     Export:
-      Name: RaiseTechSampleApp-EC2
+      Name: RaiseTechSampleAppEC2

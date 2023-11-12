@@ -130,20 +130,20 @@ Outputs:
   VPC:
     Value: !Ref VPC
     Export:
-      Name: RaiseTechSampleApp-VPC
+      Name: RaiseTechSampleAppVPC
   Subnet1:
     Value: !Ref PublicSubnet1a
     Export:
-      Name: RaiseTechSampleApp-PublicSubnet1a
+      Name: RaiseTechSampleAppPublicSubnet1a
   Subnet2:
     Value: !Ref PublicSubnet1c
     Export:
-      Name: RaiseTechSampleApp-PublicSubnet1c
+      Name: RaiseTechSampleAppPublicSubnet1c
   SubnetGroup:
     Value: !Ref RDSDBSubnetGroup
     Export:
-      Name: RaiseTechSampleApp-SubnetGroup
+      Name: RaiseTechSampleAppSubnetGroup
   RouteTable:
     Value: !Ref RouteTableForPublicSubnet
     Export:
-      Name: RaiseTechSampleApp-RouteTableForPublicSubnet
+      Name: RaiseTechSampleAppRouteTableForPublicSubnet

@@ -19,7 +19,7 @@ Resources:
               - !Sub arn:aws:s3:::${S3Bucket}
               - !Sub arn:aws:s3:::${S3Bucket}/*
       RouteTableIds:
-        - !ImportValue RaiseTechSampleApp-RouteTableForPublicSubnet
+        - !ImportValue RaiseTechSampleAppRouteTableForPublicSubnet
       ServiceName: com.amazonaws.ap-northeast-1.s3
       VpcEndpointType: Gateway
-      VpcId: !ImportValue RaiseTechSampleApp-VPC
+      VpcId: !ImportValue RaiseTechSampleAppVPC
