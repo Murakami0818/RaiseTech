@@ -10,7 +10,7 @@ Resources:
       Port: 80
       Protocol: HTTP
       Targets:
-        - Id: !ImportValue EC2
+        - Id: !ImportValue RaiseTechSampleApp-EC2
           Port: 80
       HealthCheckPath: /
       HealthCheckPort: traffic-port
@@ -22,7 +22,7 @@ Resources:
       IpAddressType: ipv4
       Matcher: 
         HttpCode: 200
-      VpcId: !ImportValue VPC
+      VpcId: !ImportValue RaiseTechSampleApp-VPC
       Tags:
         - Key: Name
           Value: TG-CF
@@ -33,10 +33,10 @@ Resources:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:
       SecurityGroups:
-        - !Ref SecGroupforALB
+        - !Ref SecGroupForALB
       Subnets:
-        - !ImportValue PublicSubnet1a
-        - !ImportValue PublicSubnet1c
+        - !ImportValue RaiseTechSampleApp-PublicSubnet1a
+        - !ImportValue RaiseTechSampleApp-PublicSubnet1c
       Type: application
       Tags:
         - Key: Name
@@ -50,11 +50,11 @@ Resources:
       LoadBalancerArn: !Ref ALB
       Port: 80
       Protocol: HTTP
-  SecGroupforALB:
+  SecGroupForALB:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: forALB-CF
-      VpcId: !ImportValue VPC
+      VpcId: !ImportValue RaiseTechSampleApp-VPC
       SecurityGroupIngress:
         - IpProtocol: tcp
           CidrIp: 0.0.0.0/0
@@ -65,7 +65,7 @@ Resources:
           Value: SecGroup-ALB-CF
 
 Outputs:
-  SGforALB:
-    Value: !Ref SecGroupforALB
+  SGForALB:
+    Value: !Ref SecGroupForALB
     Export:
-      Name: SecGroupforALB
+      Name: RaiseTechSampleApp-SecGroupForALB

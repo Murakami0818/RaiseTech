@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: 2010-09-09
 
 Resources: 
-  IamRoletoAccessS3:
+  IamRoleToAccessS3:
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument: 
@@ -18,14 +18,15 @@ Resources:
       Tags: 
         - Key: Name
           Value: IamRole-CF
-  iamInstanceProfile:
+  IamInstanceProfile:
     Type: AWS::IAM::InstanceProfile
     Properties:
       Roles:
-        - !Ref IamRoletoAccessS3
+        - !Ref IamRoleToAccessS3
 
 Outputs:
-  iamInstanceProfile:
-    Value: !Ref iamInstanceProfile
+  IamInstanceProfile:
+    Value: !Ref IamInstanceProfile
     Export:
-      Name: InstanceProfile
+      Name: RaiseTechSampleApp-InstanceProfile
+

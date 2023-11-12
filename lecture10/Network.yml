@@ -78,21 +78,21 @@ Resources:
 # ------------------------------------------------------------#
 #  RouteTable
 # ------------------------------------------------------------#
-  RouteTableforPublicSubnet:
+  RouteTableForPublicSubnet:
     Type: AWS::EC2::RouteTable
     Properties:
       VpcId: !Ref VPC
       Tags:
         - Key: Name
           Value: RouteTable-Public-CF
-  RouteTableforPrivateSubnet1a:
+  RouteTableForPrivateSubnet1a:
     Type: AWS::EC2::RouteTable
     Properties:
       VpcId: !Ref VPC
       Tags:
         - Key: Name
           Value: RouteTable-Private1a-CF
-  RouteTableforPrivateSubnet1c:
+  RouteTableForPrivateSubnet1c:
     Type: AWS::EC2::RouteTable
     Properties:
       VpcId: !Ref VPC
@@ -102,27 +102,27 @@ Resources:
   PublicSubnet1aRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
-      RouteTableId: !Ref RouteTableforPublicSubnet
+      RouteTableId: !Ref RouteTableForPublicSubnet
       SubnetId: !Ref PublicSubnet1a
   PublicSubnet1cRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
-      RouteTableId: !Ref RouteTableforPublicSubnet
+      RouteTableId: !Ref RouteTableForPublicSubnet
       SubnetId: !Ref PublicSubnet1c
   PrivateSubnet1aRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
-      RouteTableId: !Ref RouteTableforPrivateSubnet1a
+      RouteTableId: !Ref RouteTableForPrivateSubnet1a
       SubnetId: !Ref PrivateSubnet1a
   PrivateSubnet1cRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
-      RouteTableId: !Ref RouteTableforPrivateSubnet1c
+      RouteTableId: !Ref RouteTableForPrivateSubnet1c
       SubnetId: !Ref PrivateSubnet1c
   Route:
     Type: AWS::EC2::Route
     Properties:
-      RouteTableId: !Ref RouteTableforPublicSubnet
+      RouteTableId: !Ref RouteTableForPublicSubnet
       DestinationCidrBlock: 0.0.0.0/0
       GatewayId: !Ref IGW
 
@@ -130,20 +130,21 @@ Outputs:
   VPC:
     Value: !Ref VPC
     Export:
-      Name: VPC
+      Name: RaiseTechSampleApp-VPC
   Subnet1:
     Value: !Ref PublicSubnet1a
     Export:
-      Name: PublicSubnet1a
+      Name: RaiseTechSampleApp-PublicSubnet1a
   Subnet2:
     Value: !Ref PublicSubnet1c
     Export:
-      Name: PublicSubnet1c
+      Name: RaiseTechSampleApp-PublicSubnet1c
   SubnetGroup:
     Value: !Ref RDSDBSubnetGroup
     Export:
-      Name: SubnetGroup
+      Name: RaiseTechSampleApp-SubnetGroup
   RouteTable:
-    Value: !Ref RouteTableforPublicSubnet
+    Value: !Ref RouteTableForPublicSubnet
     Export:
-      Name: RouteTable
+      Name: RaiseTechSampleApp-RouteTableForPublicSubnet
+  

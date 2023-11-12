@@ -21,20 +21,20 @@ Resources:
       NetworkInterfaces:
         - AssociatePublicIpAddress: true
           DeviceIndex: 0
-          SubnetId: !ImportValue PublicSubnet1a
+          SubnetId: !ImportValue RaiseTechSampleApp-PublicSubnet1a
           GroupSet:
-            - !Ref SecGroupforEC2
+            - !Ref SecGroupForEC2
       ImageId: ami-04f0680f68f076681
       InstanceType: t2.micro
-      IamInstanceProfile: !ImportValue InstanceProfile
+      IamInstanceProfile: !ImportValue RaiseTechSampleApp-InstanceProfile
       Tags:
         - Key: Name
           Value: EC2Instance-CF
-  SecGroupforEC2:
+  SecGroupForEC2:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: forEC2-CF
-      VpcId: !ImportValue VPC
+      VpcId: !ImportValue RaiseTechSampleApp-VPC
       SecurityGroupIngress:
         - IpProtocol: tcp
           CidrIp: !Ref MyIP
@@ -43,7 +43,7 @@ Resources:
         - IpProtocol: tcp
           FromPort: 80
           ToPort: 80
-          SourceSecurityGroupId: !ImportValue SecGroupforALB
+          SourceSecurityGroupId: !ImportValue RaiseTechSampleApp-SecGroupForALB
       Tags:
         - Key: Name
           Value: SecGroup-EC2-CF
@@ -57,7 +57,7 @@ Resources:
       DBInstanceClass: db.t3.micro
       AvailabilityZone: ap-northeast-1a
       DBName: forCF
-      DBSubnetGroupName: !ImportValue SubnetGroup
+      DBSubnetGroupName: !ImportValue RaiseTechSampleApp-SubnetGroup
       Engine: mysql
       EngineVersion: 8.0.34
       MasterUsername: !Ref RDSMasterUsername
@@ -68,20 +68,20 @@ Resources:
       StorageEncrypted: true
       StorageType: gp2
       VPCSecurityGroups:
-        - !Ref SecGroupforRDS
+        - !Ref SecGroupForRDS
       Tags:
         - Key: Name
           Value: RDSInstance-CF
-  SecGroupforRDS:
+  SecGroupForRDS:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: forRDS-CF
-      VpcId: !ImportValue VPC
+      VpcId: !ImportValue RaiseTechSampleApp-VPC
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 3306
           ToPort: 3306
-          SourceSecurityGroupId: !Ref SecGroupforEC2
+          SourceSecurityGroupId: !Ref SecGroupForEC2
       Tags:
         - Key: Name
           Value: SecGroup-RDS-CF
@@ -90,4 +90,4 @@ Outputs:
   EC2Instance:
     Value: !Ref EC2Instance
     Export:
-      Name: EC2
+      Name: RaiseTechSampleApp-EC2
