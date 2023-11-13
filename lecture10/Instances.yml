@@ -34,7 +34,7 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: forEC2-CF
-      VpcId: !ImportValue RaiseTechSampleAppVPC
+      VpcId: !ImportValue RaiseTechSampleAppVpc
       SecurityGroupIngress:
         - IpProtocol: tcp
           CidrIp: !Ref MyIP
@@ -43,7 +43,7 @@ Resources:
         - IpProtocol: tcp
           FromPort: 80
           ToPort: 80
-          SourceSecurityGroupId: !ImportValue RaiseTechSampleAppSecGroupForALB
+          SourceSecurityGroupId: !ImportValue RaiseTechSampleAppSecGroupForAlb
       Tags:
         - Key: Name
           Value: SecGroup-EC2-CF
@@ -76,7 +76,7 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: forRDS-CF
-      VpcId: !ImportValue RaiseTechSampleAppVPC
+      VpcId: !ImportValue RaiseTechSampleAppVpc
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 3306
@@ -90,4 +90,4 @@ Outputs:
   EC2Instance:
     Value: !Ref EC2Instance
     Export:
-      Name: RaiseTechSampleAppEC2
+      Name: RaiseTechSampleAppEc2

@@ -22,4 +22,4 @@ Resources:
         - !ImportValue RaiseTechSampleAppRouteTableForPublicSubnet
       ServiceName: com.amazonaws.ap-northeast-1.s3
       VpcEndpointType: Gateway
-      VpcId: !ImportValue RaiseTechSampleAppVPC
+      VpcId: !ImportValue RaiseTechSampleAppVpc

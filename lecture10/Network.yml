@@ -130,7 +130,7 @@ Outputs:
   VPC:
     Value: !Ref VPC
     Export:
-      Name: RaiseTechSampleAppVPC
+      Name: RaiseTechSampleAppVpc
   Subnet1:
     Value: !Ref PublicSubnet1a
     Export:

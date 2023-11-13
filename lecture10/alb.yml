@@ -10,7 +10,7 @@ Resources:
       Port: 80
       Protocol: HTTP
       Targets:
-        - Id: !ImportValue RaiseTechSampleAppEC2
+        - Id: !ImportValue RaiseTechSampleAppEc2
           Port: 80
       HealthCheckPath: /
       HealthCheckPort: traffic-port
@@ -22,7 +22,7 @@ Resources:
       IpAddressType: ipv4
       Matcher: 
         HttpCode: 200
-      VpcId: !ImportValue RaiseTechSampleAppVPC
+      VpcId: !ImportValue RaiseTechSampleAppVpc
       Tags:
         - Key: Name
           Value: TG-CF
@@ -54,7 +54,7 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: forALB-CF
-      VpcId: !ImportValue RaiseTechSampleAppVPC
+      VpcId: !ImportValue RaiseTechSampleAppVpc
       SecurityGroupIngress:
         - IpProtocol: tcp
           CidrIp: 0.0.0.0/0
@@ -68,4 +68,4 @@ Outputs:
   SGForALB:
     Value: !Ref SecGroupForALB
     Export:
-      Name: RaiseTechSampleAppSecGroupForALB
+      Name: RaiseTechSampleAppSecGroupForAlb
