@@ -1,13 +1,13 @@
 ## 第３回課題 
 #### サンプルアプリケーションの起動
-![起動](/Image/lecture03_1.png)
+![起動](/Image/lecture03/lecture03_1.png)
 
 #### AP サーバーの名前とバージョン
 - PUMA　version: 5.6.5
 
 #### AP サーバーを終了させた場合、引き続きアクセスできるか
 - `kill`コマンドでAPサーバーを停止させたところ、図のようなエラーが表示された。
-![APサーバーの停止](/Image/lecture03_2.png)
+![APサーバーの停止](/Image/lecture03/lecture03_2.png)
 - `rails s`コマンドで再度APサーバーを起動したところ、アクセス可能な状態に戻った。
 
 #### DBサーバーの名前とバージョン
@@ -15,7 +15,7 @@
 
 #### DB サーバーを終了させた場合、引き続きアクセスできるか
 - `sudo service mysqld stop`コマンドでDBサーバーを停止させたところ、図のようなエラーが表示された。
-![DBサーバーの停止](/Image/lecture03_3.png)
+![DBサーバーの停止](/Image/lecture03/lecture03_3.png)
 - `sudo service mysqld start`コマンドで再度APサーバーを起動したところ、アクセス可能な状態に戻った。
 
 #### Rails の構成管理ツールの名前
