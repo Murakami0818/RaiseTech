@@ -17,5 +17,5 @@
 #### 感想
 講義の中でGitHubでのPR作成のデモンストレーションを見せていただいた際、何の作業をしているのか１回見ただけでは全然わからず、理解できるまでに時間がかかりそうだと思ったが、課題として実際に一通り操作してみたら、ある程度の流れをつかむことができた。
 
-#### 参考
-- [ディレクトリの概念を理解するにあたり参考にしたサイト](https://pikawaka.com/curriculums/programming-introduction/aws-cloud9-terminal)
+#### 参考にしたサイト
+[【プログラミング入門】AWS Cloud9でターミナルの使い方を学ぼう](https://pikawaka.com/curriculums/programming-introduction/aws-cloud9-terminal)
