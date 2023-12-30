@@ -1,27 +1,27 @@
 ## 第４回課題 
 ### VPCの作成
-![VPCの作成](/Image/lecture04_1.png)
+![VPCの作成](/Image/lecture04/lecture04_1.png)
 
 ### EC2インスタンス
 ##### EC2インスタンスの作成
-![EC2インスタンスの作成](/Image/lecture04_2.png)
+![EC2インスタンスの作成](/Image/lecture04/lecture04_2.png)
 
 ##### セキュリティグループ
-![EC2のセキュリティグループ](/Image/lecture04_3_2.png)
+![EC2のセキュリティグループ](/Image/lecture04/lecture04_3_2.png)
 
 ##### 起動
-![EC2の起動](/Image/lecture04_6.png)
+![EC2の起動](/Image/lecture04/lecture04_6.png)
 
 ### RDSインスタンス
 ##### RDSインスタンスの作成
-![RDSインスタンスの作成](/Image/lecture04_4.png)
+![RDSインスタンスの作成](/Image/lecture04/lecture04_4.png)
 
 ##### セキュリティグループ
-![RDSのセキュリティグループ](/Image/lecture04_5.png)
+![RDSのセキュリティグループ](/Image/lecture04/lecture04_5.png)
 - EC2インスタンスから接続できるよう、EC2インスタンス用のセキュリティグループをインバウンドルールとして設定。
 
 ### EC2インスタンスからRDSインスタンスへの接続
-![EC2からRDSへの接続](/Image/lecture04_7.png)
+![EC2からRDSへの接続](/Image/lecture04/lecture04_7.png)
 
 ### 今回の課題から学んだこと
 - IPアドレスと、CIDR表記の考え方。
