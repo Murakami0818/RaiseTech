@@ -2,7 +2,7 @@
 CloudFormationを利用して、第５回までに作った環境をコード化
 
 #### 第５回までに作った環境
-![構成図](/Image/lecture05_9.png)
+![構成図](/Image/lecture05/lecture05_9.png)
 
 #### テンプレート
 以下の５つのテンプレートを作成した。
