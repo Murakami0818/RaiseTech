@@ -8,7 +8,10 @@ Parameters:
   RDSMasterUsername:
     Type: String
   RDSMasterUserPassword:
+    NoEcho: true
     Type: String
+  AZ:
+    Type: AWS::EC2::AvailabilityZone::Name
 
 Resources: 
 # ------------------------------------------------------------#
@@ -55,7 +58,7 @@ Resources:
     Properties:
       AllocatedStorage: 20 
       DBInstanceClass: db.t3.micro
-      AvailabilityZone: ap-northeast-1a
+      AvailabilityZone: !Ref AZ
       DBName: forCF
       DBSubnetGroupName: !ImportValue RaiseTechSampleAppSubnetGroup
       Engine: mysql

@@ -1,5 +1,11 @@
 AWSTemplateFormatVersion: 2010-09-09
 
+Parameters:
+  AZ1a:
+    AWS::EC2::AvailabilityZone::Name
+  AZ1c:
+    AWS::EC2::AvailabilityZone::Name
+
 Resources: 
 # ------------------------------------------------------------#
 #  VPC
@@ -18,7 +24,7 @@ Resources:
   PublicSubnet1a:
     Type: AWS::EC2::Subnet
     Properties:
-      AvailabilityZone: ap-northeast-1a
+      AvailabilityZone: !Ref AZ1a
       VpcId: !Ref VPC
       CidrBlock: 10.0.0.0/24
       Tags:
@@ -27,7 +33,7 @@ Resources:
   PublicSubnet1c:
     Type: AWS::EC2::Subnet
     Properties:
-      AvailabilityZone: ap-northeast-1c
+      AvailabilityZone: !Ref AZ1c
       VpcId: !Ref VPC
       CidrBlock: 10.0.1.0/24
       Tags:
@@ -36,7 +42,7 @@ Resources:
   PrivateSubnet1a:
     Type: AWS::EC2::Subnet
     Properties:
-      AvailabilityZone: ap-northeast-1a
+      AvailabilityZone: !Ref AZ1a
       VpcId: !Ref VPC
       CidrBlock: 10.0.2.0/24
       Tags:
@@ -45,7 +51,7 @@ Resources:
   PrivateSubnet1c:
     Type: AWS::EC2::Subnet
     Properties:
-      AvailabilityZone: ap-northeast-1c
+      AvailabilityZone: !Ref AZ1c
       VpcId: !Ref VPC
       CidrBlock: 10.0.3.0/24
       Tags:
