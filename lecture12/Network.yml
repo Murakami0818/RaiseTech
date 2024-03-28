@@ -2,9 +2,9 @@ AWSTemplateFormatVersion: 2010-09-09
 
 Parameters:
   AZ1a:
-    AWS::EC2::AvailabilityZone::Name
+    Type: AWS::EC2::AvailabilityZone::Name
   AZ1c:
-    AWS::EC2::AvailabilityZone::Name
+    Type: AWS::EC2::AvailabilityZone::Name
 
 Resources: 
 # ------------------------------------------------------------#
