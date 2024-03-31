@@ -26,8 +26,8 @@ GitHubのアカウントでCircleCIにサインインし、RaiseTechの課題提
 ![実行結果](/Image/lecture12/lecture12_3.png)
 
 ### テンプレートファイルの修正
-- [Instances.ymlファイル](/lecture12/Instances.yml)で、パスワードを指定するパラメータに、`NoEcho: true`の記載を追加。
-- [Instances.ymlファイル](/lecture12/Instances.yml)と[Network.ymlファイル](/lecture12/Network.yml)でアベイラビリティゾーンをハードコーディングしてしまっていたので、パラメータを設定。
+- [instances.ymlファイル](/lecture12/instances.yml)で、パスワードを指定するパラメータに、`NoEcho: true`の記載を追加。
+- [instances.ymlファイル](/lecture12/instances.yml)と[network.ymlファイル](/lecture12/network.yml)でアベイラビリティゾーンをハードコーディングしてしまっていたので、パラメータを設定。
 
 ### テンプレートファイルの修正後の実行結果
 エラーが解消され、テストが成功した。
