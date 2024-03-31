@@ -1,5 +1,5 @@
 ## 第12回課題
-CircleCIを使用した自動テストの実行
+[CircleCI のサンプルコンフィグ](https://github.com/MasatoshiMizumoto/raisetech_documents/tree/main/aws/samples/circleci)をリポジトリに組み込み、動作させる。
 
 ### 事前準備
 GitHubの課題提出用のリポジトリに新たに[lecture12ディレクトリ](/lecture12)を作成し、第10回の課題で作成したCloudFormationのテンプレートファイルのうち[alb.ymlファイル](/lecture10/alb.yml)をコピーして格納。
@@ -16,8 +16,8 @@ GitHubのアカウントでCircleCIにサインインし、RaiseTechの課題提
 
 ### 自動テストの実行
 第10回の課題で作成したCloudFormationのテンプレートファイルのうち、以下の４つのファイルをコピーして[lecture12ディレクトリ](/lecture12)に加え、`git push`を実行。
-- [Instances.yml](/lecture10/Instances.yml)
-- [Network.yml](/lecture10/Network.yml)
+- [instances.yml](/lecture10/instances.yml)
+- [network.yml](/lecture10/network.yml)
 - [iam.yml](/lecture10/iam.yml)
 - [storage.yml](/lecture10/storage.yml)
 
